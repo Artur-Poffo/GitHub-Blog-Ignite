@@ -1,33 +1,49 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { faArrowUpRightFromSquare, faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useCallback, useEffect, useState } from "react"
 import { DefaultLink } from "../../../../components/DefaultLink"
 import { DefaultSummary } from "../../../../components/DefaultSummary"
 import { InfoWithIcon } from "../../../../components/InfoWithIcon"
+import { IUser } from "../../../../interfaces/IUser"
+import { api } from "../../../../lib/axios"
 import { AvatarImage, DescriptionWrapper, Footer, InfoWrapper, UserSummaryContainer } from "./styles"
 
+const username = import.meta.env.VITE_GITHUB_USERNAME;
+
 export function UserSummary() {
+  const [userInfo, setUserInfo] = useState<IUser>({} as IUser)
+
+  const getUserInfo = useCallback(async () => {
+    const response = await api.get(`/users/${username}`);
+    setUserInfo(response.data)
+  }, [userInfo]);
+
+  useEffect(() => {
+    getUserInfo()
+  }, [])
+
   return (
     <DefaultSummary marginTop>
       <UserSummaryContainer>
-        <AvatarImage />
+        <AvatarImage url={userInfo.avatar_url} />
 
         <InfoWrapper>
           <DescriptionWrapper>
             <header>
-              <h2>Artur Poffo</h2>
-              <DefaultLink link="https://github.com/Artur-Poffo" text="GitHub" icon={<FontAwesomeIcon icon={faArrowUpRightFromSquare} />} />
+              <h2>{userInfo.name}</h2>
+              <DefaultLink link={userInfo.html_url} text="GitHub" icon={<FontAwesomeIcon icon={faArrowUpRightFromSquare} />} />
             </header>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sed vitae similique ad rem aliquid, ipsa iure dignissimos amet ullam doloremque neque, velit repudiandae asperiores illum inventore laudantium voluptatum qui?</p>
+            <p>{userInfo.bio}</p>
           </DescriptionWrapper>
 
           <Footer>
-            <InfoWithIcon text="Artur-Poffo" icon={<FontAwesomeIcon icon={faGithub} />} />
+            <InfoWithIcon text={userInfo.login} icon={<FontAwesomeIcon icon={faGithub} />} />
 
-            <InfoWithIcon text="@Rocketseat" icon={<FontAwesomeIcon icon={faBuilding} />} />
+            {userInfo.company && <InfoWithIcon text={userInfo.company} icon={<FontAwesomeIcon icon={faBuilding} />} />}
 
-            <InfoWithIcon text="32 seguidores" icon={<FontAwesomeIcon icon={faUserGroup} />} />
+            <InfoWithIcon text={`${userInfo.followers} seguidor(s)`} icon={<FontAwesomeIcon icon={faUserGroup} />} />
           </Footer>
         </InfoWrapper>
       </UserSummaryContainer>

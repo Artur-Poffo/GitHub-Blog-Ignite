@@ -38,6 +38,14 @@ export const CardContainer = styled.div`
     }
   }
 
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
   &:hover {
     border-color: ${({ theme }) => theme['base-label']};
   }

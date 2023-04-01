@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
+import { IPost } from "../../../../interfaces/IPost";
+import { formatDateDistance } from "../../../../utils/formatter";
 import { CardContainer } from "./styles";
 
-export function PostCard() {
+interface PostCardProps {
+  post: IPost
+}
+
+export function PostCard({ post }: PostCardProps) {
+  const formattedDate = formatDateDistance(post.created_at)
+
   return (
-    <Link to={"/posts/2"} >
+    <Link to={`/posts/${post.number}`} >
       <CardContainer>
         <header>
-          <h3>JavaScript data types and data structures</h3>
-          <span>Há 1 dia</span>
+          <h3>{post.title}</h3>
+          <span>{formattedDate}</span>
         </header>
-        <p>Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available in </p>
+        <p>{post.body}</p>
       </CardContainer>
     </Link>
   )
