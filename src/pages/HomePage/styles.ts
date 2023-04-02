@@ -7,6 +7,10 @@ export const HomePageContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 910px) {
+    margin: 0 2rem;
+  }
 `
 
 export const PostsGrid = styled.div`
@@ -16,4 +20,9 @@ export const PostsGrid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 3.2rem;
   justify-items: center;
+
+  @media (max-width: 910px) {
+    margin: 4.8rem 2rem;
+    grid-template-columns: 1fr;
+  }
 `

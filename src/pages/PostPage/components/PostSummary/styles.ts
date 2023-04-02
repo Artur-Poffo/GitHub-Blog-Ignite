@@ -32,4 +32,12 @@ export const IconsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 3.2rem;
+
+  @media (max-width: 580px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-self: flex-start;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
 `

@@ -4,6 +4,10 @@ export const UserSummaryContainer = styled.div`
   width: 100%;
   display: flex;
   gap: 3.2rem;
+
+  @media (max-width: 660px) {
+    flex-direction: column;
+  }
 `
 
 interface AvatarImageProps {
@@ -19,6 +23,11 @@ export const AvatarImage = styled.div<AvatarImageProps>`
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 8px;
+
+  @media (max-width: 660px) {
+    width: 14.8rem;
+    margin: 0 auto;
+  }
 `
 
 export const InfoWrapper = styled.div`
@@ -46,22 +55,6 @@ export const DescriptionWrapper = styled.div`
       font-weight: 700;
       font-size: 2.4rem;
     }
-
-    a, a:active {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-
-      color: ${({ theme }) => theme["brand-blue"]};
-      text-decoration: none;
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 1.2rem;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 `
 
@@ -69,6 +62,12 @@ export const Footer = styled.footer`
   display: flex;
   align-items: center;
   gap: 2.4rem;
+
+  @media (max-width: 370px) {
+    flex-direction: column;
+    gap: 1.4rem;
+    margin-top: 1rem;
+  }
 `
 
 export const IconWrapper = styled.div`

@@ -49,4 +49,14 @@ export const CardContainer = styled.div`
   &:hover {
     border-color: ${({ theme }) => theme['base-label']};
   }
+
+  @media (max-width: 465px) {
+    width: 100%;
+    padding: 1.4rem;
+
+    header {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  }
 `
