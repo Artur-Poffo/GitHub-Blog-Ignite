@@ -60,7 +60,7 @@ The main features of the application are:
  - Dynamic routes with the content of each post formatted from Markdown to HTML
 
 ## Links
-  - Deploy on Vercel: <https://hacking-news.vercel.app/>
+  - Deploy on Vercel: <https://github-artur-blog-ignite.vercel.app/>
   - Repository: <https://github.com/Artur-Poffo/GitHub-Blog-Ignite>
 
   ## Versioning
