@@ -14,8 +14,6 @@ interface PostSummaryProps {
 }
 
 export function PostSummary({ post, isLoading }: PostSummaryProps) {
-  const formattedDate = formatDateDistance(!isLoading && post.created_at)
-
   return (
     <DefaultSummary marginTop>
       {isLoading ? (
@@ -30,7 +28,7 @@ export function PostSummary({ post, isLoading }: PostSummaryProps) {
             <h1>{post.title}</h1>
             <IconsWrapper>
               <InfoWithIcon text={post.user?.login} variant="dark" icon={<FontAwesomeIcon icon={faGithub} />} />
-              <InfoWithIcon text={formattedDate} variant="dark" icon={<FontAwesomeIcon icon={faCalendarDays} />} />
+              <InfoWithIcon text={formatDateDistance(post.created_at)} variant="dark" icon={<FontAwesomeIcon icon={faCalendarDays} />} />
               <InfoWithIcon text={`${post.comments} comentários`} variant="dark" icon={<FontAwesomeIcon icon={faComment} />} />
             </IconsWrapper>
           </PostInfoWrapper>
